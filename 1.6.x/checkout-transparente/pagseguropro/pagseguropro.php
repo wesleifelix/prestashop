@@ -306,7 +306,15 @@ class PagSeguroPro extends PaymentModule {
 		$link_boleto = false;
 		if(isset($info['url']) && $info['url'] != ''){
 			if (strpos(strtolower($info['desc_pagto']), 'boleto') !== false) {
-				$link_boleto = $info['url'];
+				//$link_boleto = $info['url'];
+				       /*AJUSTES PARA THIRTY BEES RETORNO DA URL NO BOLETO PARA O FRONT
+				ALGUMAS VERSÕES 1.6.1.X TAMBÉM NECESSITAM BUSCAR O LINK NO BANCO E IMPRIMIR NA TELA, EVITANDO ASSIM QUE SEJA ENVIADO SOMENTE POR E-MAIL
+				*/
+				$instance_boleto = "SELECT url FROM "._DB_PREFIX_."pagseguropro
+				WHERE `id_order` = ".$params['objOrder']->id;
+
+				$link_boleto = Db::getInstance()->getValue($instance_boleto);
+				
 			}else{
 				$link_transf = $info['url'];
 			}
@@ -325,6 +333,10 @@ class PagSeguroPro extends PaymentModule {
         }
 		
 		//Passa os parâmetros pro template
+	    
+ 
+	    
+	    
         $this->smarty->assign(array(
 			'info' => $info,
             'ps_link_boleto' => $link_boleto,
