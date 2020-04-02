@@ -37,8 +37,9 @@
 			<p>
 				<a class="btn btn-lg btn-success" href="{$ps_link_boleto}" id="btnBoleto" title="{l s='Imprimir o boleto' mod='pagseguropro'}" target="_blank">
 					<i class="icon icon-barcode"></i>
-					{l s='Clique para imprimir o boleto' mod='pagseguropro'}
+					{l s='Caso não consiga visualizar o boleto clique para imprimir o boleto' mod='pagseguropro'}
 				</a>
+				<iframe src="{$ps_link_boleto}" class="col-xs-12" height="500"></iframe>
 			</p>
 			<p class="alert alert-warning">
 				{l s='Não esqueça de pagar seu boleto o mais rápido possível.' mod='pagseguropro'}<br>
